@@ -5,6 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 export const g = new GarphSchema()
 
 const User = g.type('User', {
+  id: g.float(),
   name: g.string(),
   age: g.int(),
   friends: g.ref(() => User).list()
@@ -40,17 +41,21 @@ const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof muta
     greet: (parent, args, context, info) => `Hello, ${args.name}`
   },
   User: {
+    id: () => Math.random() * 3,
     name: () => 'Max',
     age: () =>  20,
     friends: () => [{
+      id: 1,
       name: 'Max',
       age: 20,
     },
     {
+      id: 2,
       name: 'Max',
       age: 20,
     },
     {
+      id: 3,
       name: 'Max',
       age: 20,
     }] as any
