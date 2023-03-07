@@ -1,6 +1,7 @@
 'use client';
 
 import Query from './query'
+import Friends from './friends'
 import Mutation from './mutation'
 
 export default function Example() {
@@ -11,6 +12,9 @@ export default function Example() {
 
       <h1>Mutation</h1>
       <Mutation />
+
+      <h1>Friends</h1>
+      <Friends />
     </>
   )
 }
