@@ -1,4 +1,4 @@
-import { GarphSchema, InferResolvers, Infer, buildSchema } from "garph"
+import { GarphSchema, InferResolvers, Infer, InferArgs, buildSchema } from "garph"
 import { createYoga } from 'graphql-yoga'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -28,7 +28,7 @@ export const mutationType = g.type('Mutation', {
     .description('Greets a person')
 })
 
-type x = Infer<typeof mutationType>
+type x = Infer<typeof queryType>
 
 const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof mutationType, User: typeof User }, {}> = {
   Query: {

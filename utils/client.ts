@@ -5,7 +5,7 @@ type ClientTypes = InferClient<{ query: typeof queryType, mutation: typeof mutat
 
 export const { useQuery, useMutation, query } = createClient<ClientTypes>({
   schema: g,
-  url: 'http://localhost:3001/api/graphql',
+  url: 'http://localhost:3000/api/graphql',
   defaults: {
     suspense: false
   }
