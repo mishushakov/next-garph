@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useQuery, useMutation, query } from './../utils/client'
+import { useMutation } from './../utils/client'
 
 export default function Example() {
   const [name, setName] = useState('Mish')
@@ -13,9 +13,6 @@ export default function Example() {
     {
       onCompleted(data) { },
       onError(error) { },
-      // refetchQueries: [query.greet({ name: 'Mish' })],
-      // awaitRefetchQueries: true,
-      suspense: false,
     }
   )
 

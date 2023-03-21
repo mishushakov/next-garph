@@ -62,11 +62,14 @@ const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof muta
   }
 }
 
+export const config = {
+  runtime: 'edge'
+}
+
 // Next.JS + Yoga API
-export default createYoga<{
-  req: NextApiRequest
-  res: NextApiResponse
-}>({
+const yoga = createYoga({
   schema: buildSchema({ g, resolvers }),
   graphqlEndpoint: '/api/graphql'
 })
+
+export default yoga.handleNodeRequest
