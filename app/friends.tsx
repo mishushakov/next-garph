@@ -8,9 +8,18 @@ export default function Example() {
   const user = query.user
 
   return (
-    <ul>
-      { user.friends.map((friend) => <li key={Math.random() * 3}>{friend.name}, {friend.age} <br />
-      Friends you have in common: { friend.friends.map((f) => f.name).join(', ') }</li>) }
-    </ul>
+    // <ul>
+    //   { user.friends.map((friend) => <li key={Math.random() * 3}>{friend.name}, {friend.age} <br />
+    //   Friends you have in common: { friend.friends.map((f) => f.name).join(', ') }</li>) }
+    // </ul>
+
+    <>
+      <p>User: { user.name }</p>
+      <p>Friends:</p>
+
+      <ul>
+        { user.friends.map((friend) => <li key={Math.random() * 3}>{friend.name}, {friend.age} </li>) }
+      </ul>
+    </>
   )
 }

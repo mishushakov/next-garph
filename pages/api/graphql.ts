@@ -72,4 +72,4 @@ const yoga = createYoga({
   graphqlEndpoint: '/api/graphql'
 })
 
-export default yoga.handleNodeRequest
+export default yoga.handleRequest
