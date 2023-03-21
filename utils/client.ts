@@ -6,7 +6,7 @@ type ClientTypes = InferClient<{ query: typeof queryType, mutation: typeof mutat
 
 export const { useQuery, useMutation, query } = createClient<ClientTypes>({
   schema: g,
-  url: process.env.NODE_ENV === 'production' ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : 'http://localhost:3000/api/graphql',
+  url: process.env.NODE_ENV === 'production' ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/graphql` : 'http://localhost:3000/api/graphql',
   defaults: {
     suspense: false
   }
