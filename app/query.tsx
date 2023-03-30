@@ -1,3 +1,5 @@
+'use server';
+
 import { resolved, query } from './../utils/client'
 
 export default async function Example() {
