@@ -1,8 +1,9 @@
-'use client';
+import { resolved, query } from './../utils/client'
 
-import { useQuery } from './../utils/client'
+export default async function Example() {
+  const data = await resolved(() => {
+    return query.greet({ name: 'Mish' })
+  })
 
-export default function Example() {
-  const query = useQuery()
-  return <p>{ query.greet({ name: 'Mish' }) }</p>
+  return <p>{ data }</p>
 }
