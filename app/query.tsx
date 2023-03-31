@@ -1,11 +1,12 @@
-'use server';
-
 import { resolved, query } from './../utils/client'
 
 export default async function Example() {
   const data = await resolved(() => {
-    return query.greet({ name: 'Mish' })
+    const name = query.greet({ name: 'Max' })
+    return {
+      name
+    }
   })
 
-  return <p>{ data }</p>
+  return <p>{ data.name }</p>
 }
