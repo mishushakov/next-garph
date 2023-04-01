@@ -1,13 +1,8 @@
-'use client';
-
 import { userQuery } from './../queries/userQuery'
-import { useQuery } from './../utils/hooks'
+import { resolved } from './../utils/client'
 
-export default function Example() {
-  const { data, loading, error } = useQuery(userQuery)
-
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
+export default async function Example() {
+  const data = await resolved(userQuery)
 
   return (
     <>

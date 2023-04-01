@@ -1,20 +1,20 @@
 import Query from './query'
-import Friends from './friends'
+import QueryServer from './query_server'
 import Mutation from './mutation'
 
 export default function Example() {
   return (
     <>
       <h1>Query</h1>
+      <Query />
+
+      <h1>Query (Server)</h1>
 
       {/* @ts-expect-error Server Component */}
-      <Query />
+      <QueryServer />
 
       <h1>Mutation</h1>
       <Mutation />
-
-      <h1>Friends</h1>
-      <Friends />
     </>
   )
 }
