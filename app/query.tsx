@@ -1,12 +1,12 @@
 'use client';
 
 import { userQuery } from './../queries/userQuery'
-import { useQuery } from './../utils/hooks'
+import { useTransactionQuery } from './../utils/client'
 
 export default function Example() {
-  const { data, loading, error } = useQuery(userQuery)
+  const { data, error, isLoading } = useTransactionQuery(userQuery)
 
-  if (loading) return <div>Loading...</div>
+  if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
 
   return (
