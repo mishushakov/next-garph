@@ -5,6 +5,10 @@ export function userQuery () {
 
   return {
     name: userQuery.name,
-    friends: userQuery.friends.map(fields => ({ ...fields }))
+    friends: userQuery.friends.map(fields => ({
+      id: fields.id,
+      name: fields.name,
+      age: fields.age
+    }))
   }
 }

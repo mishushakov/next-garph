@@ -12,7 +12,7 @@ export function useQuery <T> (query: () => T) {
       .then(data => setData(data))
       .catch(error => setError(error))
       .finally(() => setLoading(false))
-  })
+  }, [])
 
   return { data, loading, error }
 }
