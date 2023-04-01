@@ -1,3 +1,5 @@
+'use server';
+
 import { userQuery } from './../queries/userQuery'
 import { resolved } from './../utils/client'
 
