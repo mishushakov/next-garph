@@ -14,7 +14,7 @@ const User = g.type('User', {
 export const queryType = g.type('Query', {
   greet: g.string()
     .args({
-      name: g.string().optional().default('Max'),
+      name: g.string().optional(),
     })
     .description('Greets a person'),
   user: g.ref(() => User)
@@ -23,7 +23,7 @@ export const queryType = g.type('Query', {
 export const mutationType = g.type('Mutation', {
   greet: g.string()
     .args({
-      name: g.string().optional().default('Max'),
+      name: g.string().optional(),
     })
     .description('Greets a person')
 })
@@ -69,7 +69,8 @@ export const config = {
 // Next.JS + Yoga API
 const yoga = createYoga({
   schema: buildSchema({ g, resolvers }),
-  graphqlEndpoint: '/api/graphql'
+  graphqlEndpoint: '/api/graphql',
+  logging: 'debug'
 })
 
 export default yoga.handleRequest
