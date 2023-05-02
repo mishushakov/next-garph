@@ -1,6 +1,7 @@
 import Query from './query'
 import QueryServer from './query_server'
 import Mutation from './mutation'
+import Subscription from './subscription'
 
 export default function Example() {
   return (
@@ -15,6 +16,9 @@ export default function Example() {
 
       <h1>Mutation</h1>
       <Mutation />
+
+      <h1>Subscriptions</h1>
+      <Subscription />
     </>
   )
 }

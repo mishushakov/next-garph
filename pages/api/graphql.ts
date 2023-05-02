@@ -28,9 +28,11 @@ export const mutationType = g.type('Mutation', {
     .description('Greets a person')
 })
 
-type x = Infer<typeof queryType>
+export const subscriptionType = g.type('Subscription', {
+  counter: g.int()
+})
 
-const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof mutationType, User: typeof User }, {}> = {
+const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof mutationType, Subscription: typeof subscriptionType, User: typeof User }, {}> = {
   Query: {
     greet: (parent, args, context, info) => `Hello, ${args.name}`,
     user: (parent, args, context, info) => {
@@ -39,6 +41,16 @@ const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof muta
   },
   Mutation: {
     greet: (parent, args, context, info) => `Hello, ${args.name}`
+  },
+  Subscription: {
+    counter: {
+      subscribe: async function* (parent, args, context, info) {
+        for (let i = 100; i >= 0; i--) {
+          await new Promise((resolve) => setTimeout(resolve, 1000))
+          yield { counter: i }
+        }
+      }
+    }
   },
   User: {
     id: () => Math.random() * 3,
@@ -62,14 +74,10 @@ const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof muta
   }
 }
 
-export const config = {
-  runtime: 'edge'
-}
-
 // Next.JS + Yoga API
 const yoga = createYoga({
   schema: buildSchema({ g, resolvers }),
   graphqlEndpoint: '/api/graphql'
 })
 
-export default yoga.handleRequest
+export default yoga
