@@ -10,7 +10,7 @@ export default function Example() {
       <p>User: {query.user?.name}</p>
       <p>Friends:</p>
       <ul>{ query.user?.friends.map(friend => {
-        return <li key={friend.id}>{ friend.name }, { friend.age }</li>
+        return <li key={friend.id ?? 0}>{ friend.name }, { friend.age }</li>
       }) }
       </ul>
     </>

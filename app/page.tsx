@@ -17,7 +17,7 @@ export default function Example() {
       <h1>Mutation</h1>
       <Mutation />
 
-      <h1>Subscriptions</h1>
+      <h1>Subscription</h1>
       <Subscription />
     </>
   )
