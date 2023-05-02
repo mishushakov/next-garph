@@ -1,6 +1,6 @@
-import Query from './query'
-import QueryServer from './query_server'
-import Mutation from './mutation'
+import Query from "./query";
+import QueryServer from "./query_server";
+import Mutation from "./mutation";
 
 export default function Example() {
   return (
@@ -8,13 +8,8 @@ export default function Example() {
       <h1>Query</h1>
       <Query />
 
-      <h1>Query (Server)</h1>
-
-      {/* @ts-expect-error Server Component */}
-      <QueryServer />
-
       <h1>Mutation</h1>
       <Mutation />
     </>
-  )
+  );
 }

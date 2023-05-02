@@ -1,75 +1,48 @@
-import { GarphSchema, InferResolvers, Infer, InferArgs, buildSchema } from "garph"
-import { createYoga } from 'graphql-yoga'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import {
+  GarphSchema,
+  InferResolvers,
+  Infer,
+  InferArgs,
+  buildSchema,
+} from "garph";
+import { createYoga } from "graphql-yoga";
 
-export const g = new GarphSchema()
+export const g = new GarphSchema();
 
-const User = g.type('User', {
-  id: g.float(),
-  name: g.string(),
-  age: g.int(),
-  friends: g.ref(() => User).list()
-})
-
-export const queryType = g.type('Query', {
-  greet: g.string()
+export const queryType = g.type("Query", {
+  greet: g
+    .string()
     .args({
-      name: g.string().optional().default('Max'),
+      name: g.string().optional().default("Max"),
     })
-    .description('Greets a person'),
-  user: g.ref(() => User)
-})
+    .description("Greets a person"),
+});
 
-export const mutationType = g.type('Mutation', {
-  greet: g.string()
+export const mutationType = g.type("Mutation", {
+  greet: g
+    .string()
     .args({
-      name: g.string().optional().default('Max'),
+      name: g.string().optional().default("Max"),
     })
-    .description('Greets a person')
-})
+    .description("Greets a person"),
+});
 
-type x = Infer<typeof queryType>
+type x = Infer<typeof queryType>;
 
-const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof mutationType, User: typeof User }, {}> = {
+const resolvers: InferResolvers<
+  { Query: typeof queryType; Mutation: typeof mutationType },
+  {}
+> = {
   Query: {
     greet: (parent, args, context, info) => `Hello, ${args.name}`,
-    user: (parent, args, context, info) => {
-      return {} as any
-    }
   },
   Mutation: {
-    greet: (parent, args, context, info) => `Hello, ${args.name}`
+    greet: (parent, args, context, info) => `Hello, ${args.name}`,
   },
-  User: {
-    id: () => Math.random() * 3,
-    name: () => 'Max',
-    age: () =>  20,
-    friends: () => [{
-      id: 1,
-      name: 'Max',
-      age: 20,
-    },
-    {
-      id: 2,
-      name: 'Max',
-      age: 20,
-    },
-    {
-      id: 3,
-      name: 'Max',
-      age: 20,
-    }] as any
-  }
-}
-
-export const config = {
-  runtime: 'edge'
-}
+};
 
 // Next.JS + Yoga API
-const yoga = createYoga({
+export default createYoga({
   schema: buildSchema({ g, resolvers }),
-  graphqlEndpoint: '/api/graphql'
-})
-
-export default yoga.handleRequest
+  graphqlEndpoint: "/api/graphql",
+});

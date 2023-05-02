@@ -1,13 +1,24 @@
-import { InferClient } from 'garph/dist/client'
-import { createClient } from '@garph/gqty'
-import { g, queryType, mutationType } from '../pages/api/graphql'
+import { InferClient } from "garph/dist/client";
+import { createClient } from "@garph/gqty";
+import { g, queryType, mutationType } from "../pages/api/graphql";
 
-type ClientTypes = InferClient<{ query: typeof queryType, mutation: typeof mutationType }>
+type ClientTypes = InferClient<{
+  query: typeof queryType;
+  mutation: typeof mutationType;
+}>;
 
-export const { useQuery, useMutation, query, mutation, resolved, inlineResolved, useTransactionQuery } = createClient<ClientTypes>({
+export const {
+  useQuery,
+  useMutation,
+  query,
+  mutation,
+  resolved,
+  inlineResolved,
+  useTransactionQuery,
+} = createClient<ClientTypes>({
   schema: g,
-  url: process.env.NODE_ENV === 'production' ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/graphql` : 'http://localhost:3000/api/graphql',
+  url: "https://b16ygf-3000.csb.app/api/graphql",
   defaults: {
-    suspense: false
-  }
-})
+    suspense: false,
+  },
+});
