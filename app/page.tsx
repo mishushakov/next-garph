@@ -1,5 +1,4 @@
 import Query from "./query";
-import QueryServer from "./query_server";
 import Mutation from "./mutation";
 
 export default function Example() {
