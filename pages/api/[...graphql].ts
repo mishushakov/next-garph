@@ -1,5 +1,6 @@
 import { GarphSchema, InferResolvers, Infer, InferArgs, buildSchema } from "garph"
 import { createYoga } from 'graphql-yoga'
+import { useGraphQLSSE } from '@graphql-yoga/plugin-graphql-sse'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export const g = new GarphSchema()
@@ -45,7 +46,7 @@ const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof muta
   Subscription: {
     counter: {
       subscribe: async function* (parent, args, context, info) {
-        for (let i = 100; i >= 0; i--) {
+        for (let i = 1; i <= 100; i++) {
           await new Promise((resolve) => setTimeout(resolve, 1000))
           yield { counter: i }
         }
@@ -74,10 +75,20 @@ const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof muta
   }
 }
 
+export const config = {
+  runtime: 'edge'
+}
+
 // Next.JS + Yoga API
 const yoga = createYoga({
   schema: buildSchema({ g, resolvers }),
-  graphqlEndpoint: '/api/graphql'
+  graphqlEndpoint: '/api/graphql',
+  graphiql: {
+    subscriptionsProtocol: 'GRAPHQL_SSE'
+  },
+  plugins: [
+    useGraphQLSSE()
+  ]
 })
 
-export default yoga
+export default yoga.handleRequest

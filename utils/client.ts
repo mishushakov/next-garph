@@ -1,6 +1,6 @@
 import { InferClient } from 'garph/dist/client'
 import { createClient } from '@garph/gqty'
-import { g, queryType, mutationType, subscriptionType } from '../pages/api/graphql'
+import { g, queryType, mutationType, subscriptionType } from '../pages/api/[...graphql]'
 
 type ClientTypes = InferClient<{ query: typeof queryType, mutation: typeof mutationType, subscription: typeof subscriptionType }>
 
