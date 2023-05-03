@@ -2,6 +2,7 @@ import { GarphSchema, InferResolvers, Infer, InferArgs, buildSchema } from "garp
 import { createYoga } from 'graphql-yoga'
 import { useGraphQLSSE } from '@graphql-yoga/plugin-graphql-sse'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { printSchema } from "garph/dist/schema"
 
 export const g = new GarphSchema()
 
@@ -79,9 +80,11 @@ export const config = {
   runtime: 'edge'
 }
 
+export const schema = buildSchema({ g, resolvers })
+
 // Next.JS + Yoga API
 const yoga = createYoga({
-  schema: buildSchema({ g, resolvers }),
+  schema,
   graphqlEndpoint: '/api/graphql',
   graphiql: {
     subscriptionsProtocol: 'GRAPHQL_SSE'

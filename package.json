@@ -10,7 +10,7 @@
     "generate": "gqty generate"
   },
   "dependencies": {
-    "@garph/gqty": "^0.2.2",
+    "@garph/gqty": "^0.3.2",
     "@graphql-yoga/plugin-graphql-sse": "^1.5.1",
     "@types/node": "18.11.15",
     "@types/react": "18.0.26",
