@@ -1,10 +1,4 @@
-import {
-  GarphSchema,
-  InferResolvers,
-  Infer,
-  InferArgs,
-  buildSchema,
-} from "garph";
+import { GarphSchema, InferResolvers, Infer, buildSchema } from "garph";
 import { createYoga } from "graphql-yoga";
 
 export const g = new GarphSchema();
@@ -41,8 +35,10 @@ const resolvers: InferResolvers<
   },
 };
 
+export const schema = buildSchema({ g, resolvers });
+
 // Next.JS + Yoga API
 export default createYoga({
-  schema: buildSchema({ g, resolvers }),
+  schema,
   graphqlEndpoint: "/api/graphql",
 });
