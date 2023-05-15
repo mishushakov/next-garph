@@ -1,5 +1,6 @@
 'use client';
 
+// import { useQuery } from '../gqty'
 import { useQuery } from '../utils/client'
 
 export default function Example() {

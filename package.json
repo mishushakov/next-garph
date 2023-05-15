@@ -19,11 +19,14 @@
     "graphql-yoga": "^3.7.0",
     "next": "^13.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "4.9.4"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@gqty/react": "^3.0.0-alpha-524ea531.0",
     "@next/bundle-analyzer": "^13.2.3",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "gqty": "^3.0.0-alpha-524ea531.0",
+    "graphql-ws": "^5.13.1",
+    "typescript": "^5.0.4"
   }
 }
