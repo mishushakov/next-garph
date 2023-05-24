@@ -1,0 +1,6 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [["@garph/gqty/dist/plugin", {
+    "clientConfig": "./utils/client.ts"
+  }]]
+}
