@@ -1,8 +1,7 @@
 import { createClient, InferClient } from '@garph/gqty'
 import { createClient as createSubscriptionsClient } from 'graphql-sse'
 import { createGeneratedSchema, createScalarsEnumsHash } from '@garph/gqty/dist/utils'
-import { schema } from '../pages/api/[...graphql]'
-import type { queryType, mutationType, subscriptionType } from '../pages/api/[...graphql]'
+import { schema, queryType, mutationType, subscriptionType } from '../app/api/[...graphql]/schema'
 
 type ClientTypes = InferClient<{ query: typeof queryType, mutation: typeof mutationType, subscription: typeof subscriptionType }>
 

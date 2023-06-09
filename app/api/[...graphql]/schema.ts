@@ -1,10 +1,6 @@
-import { GarphSchema, InferResolvers, Infer, InferArgs, buildSchema } from "garph"
-import { createYoga } from 'graphql-yoga'
-import { useGraphQLSSE } from '@graphql-yoga/plugin-graphql-sse'
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { printSchema } from "garph/dist/schema"
+import { GarphSchema, InferResolvers, buildSchema } from "garph"
 
-export const g = new GarphSchema()
+const g = new GarphSchema()
 
 const User = g.type('User', {
   id: g.float(),
@@ -76,22 +72,4 @@ const resolvers: InferResolvers<{ Query: typeof queryType, Mutation: typeof muta
   }
 }
 
-export const config = {
-  runtime: 'edge'
-}
-
 export const schema = buildSchema({ g, resolvers })
-
-// Next.JS + Yoga API
-const yoga = createYoga({
-  schema,
-  graphqlEndpoint: '/api/graphql',
-  graphiql: {
-    subscriptionsProtocol: 'GRAPHQL_SSE'
-  },
-  plugins: [
-    useGraphQLSSE()
-  ]
-})
-
-export default yoga.handleRequest
